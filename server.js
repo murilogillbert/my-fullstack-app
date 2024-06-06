@@ -1,25 +1,20 @@
-import express from 'express';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
 const app = express();
-const port = 5000;
+const port = 5000; // Porta do servidor backend
 
-//Middleware para habilitar o cors
+// Middleware para habilitar o CORS
+app.use(cors());
 
-app.use(cors())
+// Middleware para parsear JSON
+app.use(express.json());
 
-//Middleware para parsear JSON
-
-app.use(express.json())
-
-//Rota do exemplo
-
-app.get('/api/message',(req,res)=>{
-    res.json({message:"Hello from the Server!"});
-
+// Rota de exemplo
+app.get('/api/message', (req, res) => {
+  res.json({ message: 'Hello from the server!' });
 });
 
-//Iniciar o servidor
-
-app.listen(port, ()=>{
-    console.log(`Servidor rodando em http://localhost:${port}`)
-})
+// Iniciar o servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
